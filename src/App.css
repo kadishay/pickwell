@@ -2,10 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App .SubTitle{
+  padding-top: 10px;
 }
+
+.multiselect-container {
+  width:50% !important;
+  left: 25%;
+  top:10px;
+}
+.multiselect-container .chip {
+  margin-bottom: 0 !important;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
