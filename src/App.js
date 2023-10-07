@@ -52,7 +52,6 @@ function App() {
         }
         
       });
-      console.log(availbleServices);
       setServices(availbleServices);
     });
   },[setSelectedMemberships]);
@@ -63,7 +62,6 @@ function App() {
 
   function changeSelectedMemberships(val) {
     setSelectedMemberships(val.map(item=>item.id));
-    console.log(val);
   }
 
   return (
