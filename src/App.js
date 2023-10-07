@@ -13,6 +13,8 @@ function App() {
   const [memberships, setMemberships] = useState([]);
   const [selectedMemberships, setSelectedMemberships] = useState([]);
 
+  const [services, setServices] = useState([]);
+
   useEffect(() => {
     axios({
       method: 'get',
@@ -34,11 +36,33 @@ function App() {
     });
   },[selectedServiceProviders]);
 
+  useEffect(() => {
+    //fetch and filter membership types
+    axios({
+      method: 'get',
+      url: 'https://frdsi5b0x9.execute-api.us-east-1.amazonaws.com/services'
+    }).then(function (response) {
+      let availbleServices = response.data.filter((service)=>{
+        if (service.requiredMembership[0]==="[") {
+          var clean = service.requiredMembership.substring(1,service.requiredMembership.length-1);
+          var obj = clean.split(",");
+          return obj.some((requiredMembership)=>selectedMemberships.includes(service.requiredMembership));
+        } else {
+          return selectedMemberships.includes(service.requiredMembership)
+        }
+        
+      });
+      console.log(availbleServices);
+      setServices(availbleServices);
+    });
+  },[setSelectedMemberships]);
+
   function changeSelectedProviders(val) {
     setSelectedServiceProviders(val.map(item=>item.id));
   }
 
   function changeSelectedMemberships(val) {
+    setSelectedMemberships(val.map(item=>item.id));
     console.log(val);
   }
 
@@ -64,7 +88,12 @@ function App() {
               />
           </div>
           :""}
-        {selectedMemberships.length?"yup":"na"}
+        {selectedMemberships.length ?
+          <div>
+            <div className="ServicesTitle"> Your services: </div>
+            {services.map(item=><span className="ServiceTag" key={item.id}>{item.serviceName}</span>)}
+          </div>
+          :""}
     </div>
   );
 }

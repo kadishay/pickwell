@@ -10,6 +10,21 @@
   padding-top: 30px;
 }
 
+.App .ServicesTitle {
+  padding-top: 30px;
+}
+
+.App .ServiceTag {
+  margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 4px 10px;
+  border-radius: 11px;
+  background-color: #0096fb;
+  width: 10px;
+  line-height: 33px;
+  color: white;
+}
+
 .multiselect-container {
   width:50% !important;
   left: 25%;
