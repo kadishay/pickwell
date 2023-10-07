@@ -54,7 +54,7 @@ function App() {
       });
       setServices(availbleServices);
     });
-  },[setSelectedMemberships]);
+  },[selectedMemberships]);
 
   function changeSelectedProviders(val) {
     setSelectedServiceProviders(val.map(item=>item.id));
