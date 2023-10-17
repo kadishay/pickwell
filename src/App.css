@@ -14,15 +14,19 @@
   padding-top: 30px;
 }
 
-.App .ServiceTag {
-  margin-bottom: 5px;
-    margin-right: 5px;
-    padding: 4px 10px;
+.App .ServicesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  gap: 1% 1%;
+  margin: 10px; 
+}
+
+.App .ServicesContainer .ServiceTag {
+
   border-radius: 11px;
   background-color: #0096fb;
   line-height: 33px;
   color: white;
-  display: inline-block;
 }
 
 .multiselect-container {

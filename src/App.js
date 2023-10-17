@@ -89,11 +89,13 @@ function App() {
         {selectedMemberships.length ?
           <div>
             <div className="ServicesTitle"> Your services: </div>
-            {services.map(item=><div className="ServiceTag" key={item.id}>
+            <div className="ServicesContainer">
+              {services.map(item=><div className="ServiceTag" key={item.id}>
                 <div> {item.serviceProviderId} </div>
                 <div> {item.serviceName} </div>
                 <div> {item.totalDuration} </div>
               </div>)}
+            </div>
           </div>
           :""}
     </div>
