@@ -6,6 +6,8 @@ import axios from 'axios'
 
 import Multiselect from 'multiselect-react-dropdown';
 
+let serviceProvidersMap = {};
+
 function App() {
   const [serviceProviders, setServiceProviders] = useState([]);
   const [selectedServiceProviders, setSelectedServiceProviders] = useState([]);
@@ -20,6 +22,9 @@ function App() {
       method: 'get',
       url: 'https://o33i0hj6u9.execute-api.us-east-1.amazonaws.com/service-providers'
     }).then(function (response) {
+      response.data.forEach((provider)=>{
+        serviceProvidersMap[provider.id] = provider.name;
+      });
       setServiceProviders(response.data.map((item)=>({name:item.name,id:item.id})));
     });
   },[]);
@@ -90,11 +95,12 @@ function App() {
           <div>
             <div className="ServicesTitle"> Your services: </div>
             <div className="ServicesContainer">
-              {services.map(item=><div className="ServiceTag" key={item.id}>
-                <div> {item.serviceProviderId} </div>
-                <div> {item.serviceName} </div>
-                <div> {item.totalDuration} </div>
-              </div>)}
+              {services.map(item=>
+                <div className="ServiceTag" key={item.id}>
+                  <div> {serviceProvidersMap[item.serviceProviderId]} </div>
+                  <div> {item.serviceName} </div>
+                  <div> {item.totalDuration} </div>
+                </div>)}
             </div>
           </div>
           :""}
