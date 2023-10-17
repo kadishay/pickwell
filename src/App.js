@@ -46,7 +46,8 @@ function App() {
         if (service.requiredMembership[0]==="[") {
           var clean = service.requiredMembership.substring(1,service.requiredMembership.length-1);
           var obj = clean.split(",");
-          return obj.some((requiredMembership)=>selectedMemberships.includes(service.requiredMembership));
+          var requiredMembershipArray = service.requiredMembership.substring(1,service.requiredMembership.length-1).split(",");
+          return obj.some((requiredMembership)=>requiredMembershipArray.includes(requiredMembership));
         } else {
           return selectedMemberships.includes(service.requiredMembership)
         }
