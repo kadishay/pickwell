@@ -20,9 +20,9 @@
     padding: 4px 10px;
   border-radius: 11px;
   background-color: #0096fb;
-  width: 10px;
   line-height: 33px;
   color: white;
+  display: inline-block;
 }
 
 .multiselect-container {
