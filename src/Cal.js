@@ -101,19 +101,19 @@ function Cal() {
         }
   	}
 
-  	function createCalEvent() {
+  	function createCalEvent(title, location, description, startDate, startTime, eventLength) {
         try {
           const event = {
-            'summary': 'Google I/O 2015',
-            'location': '800 Howard St., San Francisco, CA 94103',
-            'description': 'A chance to hear more about Google\'s developer products.',
+            'summary': title,
+            'location': location,
+            'description': description,
             'start': {
               'dateTime': '2023-05-28T09:00:00-07:00',
-              'timeZone': 'America/Los_Angeles'
+              'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
             'end': {
               'dateTime': '2023-05-28T17:00:00-07:00',
-              'timeZone': 'America/Los_Angeles'
+              'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
             
             'reminders': {
@@ -127,7 +127,7 @@ function Cal() {
 
           /*
             'recurrence': [
-              'RRULE:FREQ=DAILY;COUNT=2'
+              'RRULE:FREQ=DAILY;COUNT=1'
             ],
             'attendees': [
               {'email': 'lpage@example.com'},
@@ -143,7 +143,7 @@ function Cal() {
             console.log(event);
           });
         } catch (err) {
-          console.log(err);
+          console.log('Error: ' + err);
           return;
         }
  	}
