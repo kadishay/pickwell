@@ -1,7 +1,3 @@
-//https://developers.google.com/calendar/api/guides/create-events#javascript
-//https://developers.google.com/calendar/api/quickstart/js
-import React, { useState, useEffect } from 'react';
-
 const CLIENT_ID = '165790906618-s87pukgnvvm6r0gomhiqj3livimqecvb.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyAp_rr6IfA19Be4DzrENOxub_BnxxpWrT0';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
@@ -11,78 +7,76 @@ let tokenClient;
 let gapiInited = false;
 let gisInited = false;
 
-function Cal() {
+if (window && document) {
+  const scriptA = document.createElement('script');
+  const body = document.getElementsByTagName('body')[0];
+  scriptA.src = 'https://apis.google.com/js/api.js';
+  body.appendChild(scriptA);
+  scriptA.addEventListener('load', () => {
+    Cal.gapiLoaded();
+  });
+
+  const scriptB = document.createElement('script')
+  scriptB.src = 'https://accounts.google.com/gsi/client';
+  body.appendChild(scriptB);
+  scriptB.addEventListener('load', () => {
+    Cal.gisLoaded();
+  });
+}
+
+const Cal = {
 
 	/* global gapi */
 	/* global google */
 
-	useEffect(() => {
-	    if (window && document) {
-	      const scriptA = document.createElement('script');
-	      const body = document.getElementsByTagName('body')[0];
-	      scriptA.src = 'https://apis.google.com/js/api.js';
-	      body.appendChild(scriptA);
-	      scriptA.addEventListener('load', () => {
-	        gapiLoaded();
-	      });
-
-	      const scriptB = document.createElement('script')
-	      scriptB.src = 'https://accounts.google.com/gsi/client';
-	      body.appendChild(scriptB);
-	      scriptB.addEventListener('load', () => {
-	        gisLoaded();
-	      });
-	    }
-  	}, []);
-
 	/**
    	  * Callback after api.js is loaded.
   	  */
-  	function gapiLoaded() {
-    	gapi.load('client', initializeGapiClient);
-  	}
+  	gapiLoaded : () => {
+    	gapi.load('client', Cal.initializeGapiClient);
+  	},
 
   	/**
 	  * Callback after Google Identity Services are loaded.
 	  */
-  	function gisLoaded() {
+  	gisLoaded : () => {
 	    tokenClient = google.accounts.oauth2.initTokenClient({
 			client_id: CLIENT_ID,
 			scope: SCOPES,
 			callback: '', // defined later
 	    });
 	    gisInited = true;
-	    maybeEnableButtons();
-  	}
+	    Cal.maybeEnableButtons();
+  	},
 
   	/**
    	  * Enables user interaction after all libraries are loaded.
       */
-    function maybeEnableButtons() {
+    maybeEnableButtons : () => {
         if (gapiInited && gisInited) {
           	if (document.getElementById('authorize_button')) {
             	document.getElementById('authorize_button').style.visibility = 'visible';
           	}
         }
-    }
+    },
 
     /**
       * Callback after the API client is loaded. Loads the
       * discovery doc to initialize the API.
       */
-    async function initializeGapiClient() {
+    initializeGapiClient : async function () {
         await gapi.client.init({
          	apiKey: API_KEY,
           	discoveryDocs: [DISCOVERY_DOC],
         });
         gapiInited = true;
-        maybeEnableButtons();
-    }
+        Cal.maybeEnableButtons();
+    },
 
     /**
    	  *  Sign in the user upon button click.
    	  */
-  	function handleAuthClick() {
+  	handleAuthClick : () => {
         tokenClient.callback = async (resp) => {
           	if (resp.error !== undefined) {
             	throw (resp);
@@ -99,20 +93,21 @@ function Cal() {
           	// Skip display of account chooser and consent dialog for an existing session.
           	tokenClient.requestAccessToken({prompt: ''});
         }
-  	}
+  	},
 
-  	function createCalEvent(title, location, description, startDate, startTime, eventLength) {
+  	createCalEvent : (title, location, description, start, end) => {
+  		console.log(title, location, description, start, end)
         try {
           const event = {
             'summary': title,
             'location': location,
             'description': description,
             'start': {
-              'dateTime': '2023-05-28T09:00:00-07:00',
+              'dateTime': start,
               'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
             'end': {
-              'dateTime': '2023-05-28T17:00:00-07:00',
+              'dateTime': end,
               'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
             
@@ -146,14 +141,14 @@ function Cal() {
           console.log('Error: ' + err);
           return;
         }
- 	}
+ 	},
 
  	/**
       * Print the summary and start datetime/date of the next ten events in
       * the authorized user's calendar. If no events are found an
       * appropriate message is printed.
       */
-	async function listUpcomingEvents() {
+	listUpcomingEvents : async function() {
         let response;
         try {
           const request = {
@@ -180,12 +175,6 @@ function Cal() {
             'Events:\n');
         console.log(output);
   	}
-
-  	return(<div>
-  		<button id="authorize_button" onClick={handleAuthClick}>Authorize</button>
-    	<button id="create_event" onClick={createCalEvent}>Creat Event</button>
-    	<button id="create_event" onClick={listUpcomingEvents}>List</button>
-	</div>);
 }
 
 export default Cal;

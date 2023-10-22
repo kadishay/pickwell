@@ -9,6 +9,22 @@ import Multiselect from 'multiselect-react-dropdown';
 import Cal from './Cal';
 import FormDialog from './FormDialog'
 
+/*form and time*/
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import dayjs from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { TimeField } from '@mui/x-date-pickers/TimeField';
+/*form and time*/
+
 let serviceProvidersMap = {};
 
 function App() {
@@ -72,10 +88,58 @@ function App() {
     setSelectedMemberships(val.map(item=>item.id));
   }
 
+
+  /*form*/
+  const [open, setOpen] = React.useState(false);
+  const [date, setDate] = React.useState(null);
+  const [time, setTime] = React.useState(null);
+  const [currentTitle, setCurrentTitle] = React.useState(null);
+  const [currentDuration, setCurrentDuration] = React.useState(null);
+
+  const handleClickOpen = (a) => {
+    setCurrentTitle(a.target.parentElement.querySelectorAll("div")[0].innerText + " - " + a.target.parentElement.querySelectorAll("div")[1].innerText);
+    setCurrentDuration((a.target.parentElement.querySelectorAll("div")[2].innerText.split(" ")[0]));
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = (a) => {
+    setOpen(false);
+    const start = dayjs(date).format('YYYY-MM-DD') + "T" + dayjs(time).format('HH:mm:00Z');
+    const end = dayjs(date).format('YYYY-MM-DD') + "T" + dayjs(time).add(currentDuration, 'minute').format('HH:mm:00Z');
+    Cal.createCalEvent(currentTitle, null, null, start, end);
+  };
+  /*form*/
+
   return (
     <div className="App">
-      <Cal />
-      <FormDialog />
+      <button onClick={Cal.handleAuthClick}> Auth</button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            When?
+          </DialogContentText>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker 
+            value={date}
+            onChange={setDate}
+            defaultValue={dayjs()} />
+          <TimeField 
+            value={time}
+            onChange={setTime}
+            defaultValue={dayjs()} />
+        </LocalizationProvider>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
+
       <div className="ProvidersTitle"> Please select your providers: </div>
       <Multiselect
         options={serviceProviders} 
@@ -101,7 +165,7 @@ function App() {
             <div className="ServicesTitle"> Your services: </div>
             <div className="ServicesContainer">
               {services.map(item=>
-                <div className="ServiceTag" key={item.id}>
+                <div className="ServiceTag" key={item.id} onClick={handleClickOpen}>
                   <div> {serviceProvidersMap[item.serviceProviderId]} </div>
                   <div> {item.serviceName} </div>
                   <div> {item.totalDuration} </div>
