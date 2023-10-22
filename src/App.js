@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import Multiselect from 'multiselect-react-dropdown';
 
-import cal from './Cal'
+import Cal from './Cal'
 
 let serviceProvidersMap = {};
 
@@ -73,6 +73,7 @@ function App() {
 
   return (
     <div className="App">
+      <Cal />
       <div className="ProvidersTitle"> Please select your providers: </div>
       <Multiselect
         options={serviceProviders} 
