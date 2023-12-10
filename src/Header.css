@@ -1,0 +1,15 @@
+.Header {
+	height: 50px;
+	line-height: 50px;
+	background-color: #464e54;
+	top: 0;
+	left: 0;
+	/*position: fixed;*/
+	padding: 10px 0;
+	width:100%;
+}
+
+.Header .header-logo {
+	
+	height:40px;
+}
