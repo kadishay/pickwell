@@ -1,0 +1,38 @@
+.Login-Container {
+	border: 1px solid #797979;
+	width: 544px;
+
+	margin: auto;
+ 	
+ 	margin-top: 150px;
+ 	padding: 50px;
+}
+
+.Login-Button {
+	display: block;
+	width: 200px;
+	top:300px;
+	margin: 30px auto 0;
+	border: 1px solid black;
+	color:white;
+	text-decoration: none;
+}
+
+.Login-Button.Google {
+	background-color: red;
+}
+
+.Login-Button.Facebook {
+	background-color: blue;
+}
+
+.login-logo {
+    width: 20px;
+    top: 4px;
+    position: relative;
+}
+
+.Login-Legal {
+	top:50px;
+    position: relative;	
+}

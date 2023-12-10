@@ -3,70 +3,27 @@
   font-family: 'Alef', sans-serif;
 }
 
-.App .ProvidersTitle{
-  padding-top: 10px;
+.header {
+  height: 50px;
+  line-height: 50px;
+  background-color: #464e54;
+  top: 0;
+  left: 0;
+  /*position: fixed;*/
+  padding: 10px 0;
+  width:100%;
 }
 
-.App .MembershipsTitle {
-  padding-top: 30px;
+.header .header-logo {
+  height:40px;
 }
 
-.App .ServicesTitle {
-  padding-top: 30px;
-}
+.Container {
+  border: 1px solid #797979;
+  width: 544px;
 
-.App .ServicesContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; 
-  gap: 10px 10px;
-  margin: 10px; 
-}
-
-.App .ServicesContainer .ServiceTag {
-
-  border-radius: 11px;
-  background-color: #0096fb;
-  line-height: 33px;
-  color: white;
-}
-
-.multiselect-container {
-  width:50% !important;
-  left: 25%;
-  top:10px;
-}
-.multiselect-container .chip {
-  margin-bottom: 0 !important;
-}
-
-
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  margin: auto;
+  
+  margin-top: 150px;
+  padding: 50px;
 }

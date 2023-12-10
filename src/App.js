@@ -1,8 +1,16 @@
 import './App.css';
-
-import Header from './Header';
+import logo from './logo.png';
 
 import React, { useState, useEffect } from 'react';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
+
+import Login from './Login';
+import About from './About';
+import Splash from './Splash';
 
 
 function App() {
@@ -10,11 +18,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header login={login} />
-
-      <main>
-
-      </main>
+      <div className="header">
+        <img src={logo} alt="Logo" className="header-logo" />
+      </div>
+      <Router>
+        <Routes>
+            <Route exact path="/" element={<Login />} />
+            <Route path="/splash" element={<Splash />} />
+            <Route path="/about" element={<About />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
