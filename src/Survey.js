@@ -1,12 +1,12 @@
 import './Survey.css'; 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import day from './day.png';
 
 import React, { useState, useEffect } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Container from 'react-bootstrap/Container';
 
 import { NavLink } from "react-router-dom";
-
 
 const qna = [{
     title: "Questions 1",
@@ -20,7 +20,7 @@ const qna = [{
     content: "Most users like you start their weeeks like this...",
     info: null,
     answers: null,
-    image: "URL"
+    image: day
   },{
     title: "Questions 2",
     type: "multiple",
@@ -63,6 +63,7 @@ function Survey() {
       <Container className="p-3">
         <div>{qna[level].title}</div>
         <div>{qna[level].content}</div>
+        {qna[level].image ? <img src={qna[level].image} alt="Logo" className="survey-image" /> : "" }
         <div className="survey-info">{qna[level].info}</div>
           {qna[level].answers ? qna[level].answers.map((text,id)=><div className="survey-answers"><input type="radio" name={qna[level].type === "single" ? "question" : "mutiple" + id} alue={id}/><label for={text}>{text}</label></div>) : ""}
         <ProgressBar animated now={Math.round(((level+1)/qna.length)*100)} label={`${Math.round(((level+1)/qna.length)*100)}%`} />
