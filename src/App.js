@@ -11,6 +11,7 @@ import {
 import Login from './Login';
 import Survey from './Survey';
 import Splash from './Splash';
+import Vendor from './Vendor';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/splash" element={<Splash />} />
             <Route path="/survey" element={<Survey />} />
+            <Route path="/vendor" element={<Vendor />} />
         </Routes>
       </Router>
     </div>

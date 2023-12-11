@@ -1,0 +1,41 @@
+.vendor-add-button {
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #e8cac2;
+	color: white;
+	line-height: 47px;
+    font-size: 50px;
+}
+
+.vendor-section {
+	padding-bottom: 30px;
+}
+
+.vendor-item {
+	border: 1px solid black;
+	padding: 30px 0;
+	width: 40%;
+	margin: 20px auto;
+}
+
+.vendor-item-vendor {
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+}
+
+.vendor-item-subscription {
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+}
+
+.vendor-item-cost {
+	width: 30%;
+	display: inline-block;
+	text-align: center;
+}

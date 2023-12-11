@@ -2,7 +2,7 @@ import './Survey.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import day from './day.png';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Container from 'react-bootstrap/Container';
 
