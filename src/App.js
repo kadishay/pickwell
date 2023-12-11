@@ -1,7 +1,7 @@
 import './App.css';
 import logo from './logo.png';
 
-import React, { useState, useEffect } from 'react';
+import React/*, { useState, useEffect }*/ from 'react';
 import {
     BrowserRouter as Router,
     Routes,
@@ -9,12 +9,12 @@ import {
 } from "react-router-dom";
 
 import Login from './Login';
-import About from './About';
+import Survey from './Survey';
 import Splash from './Splash';
 
 
 function App() {
-  const [login, setLogins] = useState(false);
+  //const [login, setLogins] = useState(false);
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Login />} />
             <Route path="/splash" element={<Splash />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/survey" element={<Survey />} />
         </Routes>
       </Router>
     </div>

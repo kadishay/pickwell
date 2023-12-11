@@ -1,0 +1,46 @@
+.Survey .p-3 {
+	padding: 4rem !important;
+	position: relative;
+}
+
+.Survey .progress {
+	margin: 30px 50px 0;
+}
+
+.survey-answers {
+	text-align: left !important;
+	padding-left:30px;
+}
+
+.survey-answers label {
+	padding-left:10px;
+}
+
+.survey-info {
+	font-style: italic;
+	color: gray;
+}
+
+.survey-skip {
+	float: right;
+    margin: 30px 30px 0 0;
+}
+
+.survey-arrow {
+	cursor: pointer;
+	position: absolute;
+    top: 50%;
+    font-size: 30px;
+}
+
+.survey-next {
+	right: 50px;
+}
+
+.survey-prev {
+	left: 50px;
+}
+
+.survey-done {
+	margin-top: 30px;
+}
