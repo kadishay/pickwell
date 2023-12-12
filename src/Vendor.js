@@ -15,8 +15,6 @@ function Vendor() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log(vendors);
-
   return (
     <div className="Vendor">
       <Container className="p-3">

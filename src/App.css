@@ -27,3 +27,15 @@
   margin-top: 150px;
   padding: 50px;
 }
+
+.header-button {
+  background-color: #e8cac2;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.header-button:hover {
+  background-color: #cedbdc;
+}
