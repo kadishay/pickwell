@@ -16,7 +16,7 @@ function Login({setLogin}) {
           <img src={google} alt="Logo" className="login-logo" />
           Sign in with Google 
         </NavLink>
-        <NavLink to="/splash" oonClick={()=>{setLogin(true)}} className="Login-Button Facebook"> 
+        <NavLink to="/splash" onClick={()=>{setLogin(true)}} className="Login-Button Facebook"> 
           <img src={facebook} alt="Logo" className="login-logo" />
           Sign in with Facebook 
         </NavLink>

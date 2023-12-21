@@ -1,0 +1,10 @@
+.CalConf .btn-secondary {
+	background-color: #464e54;
+	border-color: #464e54;
+}
+
+.CalConf .btn-primary {
+	background-color: #e8cac2;
+	border-color: #464e54;
+	color: #464e54;
+}

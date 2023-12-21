@@ -8,9 +8,61 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 import { NavLink } from "react-router-dom";
 
+const data = {
+  "Equinox" : {
+    "subscriptions" : []
+  },
+  "Calm" : {
+    "subscriptions" : ["Monthly", "Annual"]
+  },
+  "Smothiebox" : {
+    "subscriptions" : ["SmoothieBox Classic","SmoothieBox Family","SmoothieBox Custom"]
+  },
+  "Nu" : {
+    "subscriptions" : []
+  },
+  "Trifecta" : {
+    "subscriptions" : []
+  },
+  "Talkspace" : {
+    "subscriptions" : ["Individual Therapy (Live Sessions + Messaging)","Individual Therapy (Live Sessions Unlimited)","Couples Therapy (Live Sessions + Messaging)","Couples Therapy (Live Sessions Unlimited)","Coaching (Live Sessions + Messaging)","Coaching (Live Sessions Unlimited)"]
+  },
+  "Martha & Marley Spoon" : {
+    "subscriptions" : []
+  },
+  "Daily Harvest" : {
+    "subscriptions" : []
+  },
+  "Every Plate" : {
+    "subscriptions" : []
+  },
+  "Hungry Root" : {
+    "subscriptions" : []
+  },
+  "Headspaces" : {
+    "subscriptions" : ["Annual"]
+  },
+  "Fitbit" : {
+    "subscriptions" : []
+  },
+  "Peloton" : {
+    "subscriptions" : ["All-Access Membership","App Membership","Digital Membership"]
+  },
+  "Weight Watchers" : {
+    "subscriptions" : []
+  },
+  "Planet Fitness" : {
+    "subscriptions" : []
+  }
+};
+
 function Vendor() {
   const [show, setShow] = useState(false);
   const [vendors, setVendors] = useState([]);
+
+  const [modalVendor, setModalVendor] = useState(null);
+  const [modalPossibleSubs, setModalPossibleSubs] = useState(null);
+  const [modalSubscription, setModalSubscription] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -35,20 +87,19 @@ function Vendor() {
         <Modal.Body>
           <div className="vendor-section">
             <div> Vendor Name: </div>
-            <select name="vendors" id="vendors">
-              <option value="Vendor 1">Vendor 1</option>
-              <option value="Vendor 2">Vendor 2</option>
-              <option value="Vendor 3">Vendor 3</option>
-              <option value="Vendor 4">Vendor 4</option>
+            <select name="vendors" id="vendors" value={modalVendor} onChange={(e)=>{
+              setModalVendor(e.target.value);
+              setModalPossibleSubs(data[e.target.value].subscriptions);
+            }}>
+              {Object.keys(data).map((vendor)=><option value={vendor}>{vendor}</option>)}
             </select>
           </div>
           <div className="vendor-section">
             <div>Subscription Type:</div>
-            <select name="subscriptions" id="subscriptions">
-              <option value="Subscription 1">Subscription 1</option>
-              <option value="Subscription 2">Subscription 2</option>
-              <option value="Subscription 3">Subscription 3</option>
-              <option value="Subscription4">Subscription 4</option>
+            <select name="subscriptions" id="subscriptions" value={modalSubscription} onChange={(e)=>{
+              setModalSubscription(e.target.value);
+            }}>
+              {modalVendor? data[modalVendor].subscriptions.map((sub)=><option value={sub}>{sub}</option>) : ""}
             </select>
           </div>
           <div className="vendor-section">

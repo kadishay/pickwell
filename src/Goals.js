@@ -138,7 +138,7 @@ function Goals() {
         </ToggleButton>
         <br />
 
-        <NavLink className="splash-button"> Set your calender </NavLink>
+        <NavLink to="/conf" className="splash-button"> Set your calender </NavLink>
       </Container>
     </div>
   );

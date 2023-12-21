@@ -39,3 +39,7 @@
 	display: inline-block;
 	text-align: center;
 }
+
+.vendor-section select {
+	width: 250px;
+}

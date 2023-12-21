@@ -13,6 +13,7 @@ import Survey from './Survey';
 import Splash from './Splash';
 import Vendor from './Vendor';
 import Goals from './Goals';
+import CalConf from './CalConf';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/survey" element={<Survey />} />
             <Route path="/vendor" element={<Vendor />} />
             <Route path="/goals" element={<Goals />} />
+            <Route path="/conf" element={<CalConf />} />
         </Routes>
       </Router>
     </div>
