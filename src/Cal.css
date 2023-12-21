@@ -1,0 +1,11 @@
+.k-scheduler-toolbar {
+	display: none !important;
+}
+
+.k-scheduler-footer {
+	display: none !important;
+}
+
+.k-event {
+	border: 1px solid #464e54 !important;
+}
