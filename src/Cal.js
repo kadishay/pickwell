@@ -29,7 +29,7 @@ const resources = [
 
 function Cal() {
   useEffect(() => {
-    document.querySelectorAll(".k-nav-day").forEach((item)=>console.log(item.innerHTML = item.innerHTML.split(",")[0]))
+    document.querySelectorAll(".k-nav-day").forEach((item)=>item.innerHTML = item.innerHTML.split(",")[0]);
   });
 
   return (
