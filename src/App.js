@@ -15,6 +15,7 @@ import Vendor from './Vendor';
 import Goals from './Goals';
 import CalConf from './CalConf';
 import Cal from './Cal';
+import Progress from './Progress';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -26,7 +27,9 @@ function App() {
         {login ? 
           <span>
             <span className="header-button">Explore</span>
-            <span className="header-button">My Progress</span>
+            <span className="header-button" onClick={()=>window.location.replace("/progress")}>
+                My Progress
+            </span>
             <span className="header-button">My Calendar</span>
           </span> 
           :""}
@@ -39,7 +42,8 @@ function App() {
             <Route path="/vendor" element={<Vendor />} />
             <Route path="/goals" element={<Goals />} />
             <Route path="/conf" element={<CalConf />} />
-             <Route path="/cal" element={<Cal />} />
+            <Route path="/cal" element={<Cal />} />
+            <Route path="/progress" element={<Progress setLogin={setLogin}/>} />
         </Routes>
       </Router>
     </div>

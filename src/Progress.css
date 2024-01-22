@@ -1,0 +1,44 @@
+#gauge-chart3 {
+	height: 100px;
+}
+
+.text-group text {
+	fill: #464e54 !important;
+	font-size: 22px !important;
+}
+
+.needle path, .needle circle {
+	fill:lightgray;
+}
+
+.gauge-box {
+	width: 200px;
+    display: inline-block;
+    top: 15px;
+    position: relative;
+}
+
+.gauge-box-text{
+    top: -70px;
+    position: relative;
+}
+
+.pie-box {
+	width: 160px;
+    display: inline-block;
+}
+
+.gauge-container {
+
+}
+
+.pie-container {
+    top: -20px;
+    position: relative;
+}
+
+.line-container {
+    left: 50%;
+    margin-left: -250px;
+    position: relative;
+}
