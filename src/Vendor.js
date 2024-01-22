@@ -69,7 +69,9 @@ function Vendor() {
   return (
     <div className="Vendor">
       <Container className="p-3">
-        My Subscriptions
+        <div>My Subscriptions </div>
+        <div>Sync your subscriptions here (Connect All for usage review)</div>
+        <div>Choose from a list (Explore and connect)</div>
         {vendors.length ? vendors.map((item)=><div key={item.vendor} className="vendor-item">
             <span className="vendor-item-vendor">{item.vendor}</span>
             <span className="vendor-item-subscription">{item.subscription}</span>
